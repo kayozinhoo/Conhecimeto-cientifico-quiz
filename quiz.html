@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz: Conhecimento Científico</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos gerais do corpo */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f7f9; 
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        
+        .quiz-container {
+            background-color: #ffffff;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            max-width: 700px;
+            width: 100%;
+            border-top: 5px solid #007bff; 
+        }
+
+        
+        h1 {
+            color: #0056b3;
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 700;
+            font-size: 2em;
+        }
+
+       
+        .question {
+            margin-bottom: 25px;
+            border-bottom: 1px solid #eef2f5;
+            padding-bottom: 25px;
+        }
+
+        .question:last-of-type {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 10px;
+        }
+
+       
+        .question-title {
+            font-size: 1.25em;
+            font-weight: 700;
+            color: #444;
+            margin-bottom: 20px;
+        }
+
+        
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px; 
+        }
+
+        
+        .options label {
+            display: flex;
+            align-items: center;
+            background-color: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            cursor: pointer;
+            transition: background-color 0.3s, border-color 0.3s, transform 0.2s;
+        }
+
+        .options label:hover {
+            background-color: #e9f4ff;
+            border-color: #007bff;
+            transform: translateY(-2px); 
+        }
+
+        
+        .options input[type="radio"] {
+            margin-right: 15px;
+
+            accent-color: #007bff;
+            width: 18px;
+            height: 18px;
+        }
+
+        
+        .submit-button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: #28a745; 
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2em;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 30px;
+            transition: background-color 0.3s, transform 0.2s;
+            box-shadow: 0 4px 10px rgba(40, 167, 69, 0.3);
+        }
+
+        .submit-button:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+        }
+
+       
+        #results {
+            margin-top: 40px;
+            padding: 20px;
+            border-top: 2px dashed #ccc;
+            text-align: center;
+            font-size: 1.3em;
+            font-weight: 700;
+            color: #0056b3;
+            visibility: hidden; 
+            opacity: 0;
+            transition: visibility 0s, opacity 0.5s linear;
+        }
+
+        #results.show {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .score-text {
+            margin-bottom: 10px;
+        }
+
+        .feedback {
+            font-size: 0.9em;
+            font-weight: 400;
+            text-align: left;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #e0e0e0;
+            color: #555;
+        }
+
+        .feedback p {
+            margin-bottom: 8px;
+        }
+
+        .correct-answer {
+            color: #28a745; 
+            font-weight: 700;
+        }
+
+        .incorrect-answer {
+            color: #dc3545; 
+            font-weight: 700;
+        }
+
+       
+        .attribution {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.9em;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+
+<div class="quiz-container">
+    <h1>📘 Quiz: Conhecimento Científico</h1>
+    <form id="scienceQuiz">
+        <!-- Pergunta 1 -->
+        <div class="question">
+            <p class="question-title">1. O que caracteriza o conhecimento científico?</p>
+            <div class="options">
+                <label>
+                    <input type="radio" name="q1" value="a">
+                    Baseia-se apenas em crenças e tradições.
+                </label>
+                <label>
+                    <input type="radio" name="q1" value="b">
+                    É racional, sistemático e pode ser testado.
+                </label>
+                <label>
+                    <input type="radio" name="q1" value="c">
+                    Não pode ser verificado.
+                </label>
+                <label>
+                    <input type="radio" name="q1" value="d">
+                    É absoluto e imutável.
+                </label>
+            </div>
+        </div>
+
+        <!-- Pergunta 2 -->
+        <div class="question">
+            <p class="question-title">2. Qual é a principal diferença entre o conhecimento científico e o empírico?</p>
+            <div class="options">
+                <label>
+                    <input type="radio" name="q2" value="a">
+                    O empírico é racional e o científico é intuitivo.
+                </label>
+                <label>
+                    <input type="radio" name="q2" value="b">
+                    O científico busca comprovação e o empírico baseia-se na experiência do dia a dia.
+                </label>
+                <label>
+                    <input type="radio" name="q2" value="c">
+                    O científico é subjetivo e o empírico é objetivo.
+                </label>
+                <label>
+                    <input type="radio" name="q2" value="d">
+                    Não existe diferença.
+                </label>
+            </div>
+        </div>
+
+        <!-- Pergunta 3 -->
+        <div class="question">
+            <p class="question-title">3. Qual destas opções NÃO faz parte do método científico?</p>
+            <div class="options">
+                <label>
+                    <input type="radio" name="q3" value="a">
+                    Observação.
+                </label>
+                <label>
+                    <input type="radio" name="q3" value="b">
+                    Formulação de hipóteses.
+                </label>
+                <label>
+                    <input type="radio" name="q3" value="c">
+                    Experimento.
+                </label>
+                <label>
+                    <input type="radio" name="q3" value="d">
+                    Tradição oral.
+                </label>
+            </div>
+        </div>
+
+        <!-- Pergunta 4 -->
+        <div class="question">
+            <p class="question-title">4. O conhecimento científico é considerado “falível” porque:</p>
+            <div class="options">
+                <label>
+                    <input type="radio" name="q4" value="a">
+                    Nunca muda.
+                </label>
+                <label>
+                    <input type="radio" name="q4" value="b">
+                    Pode ser refutado e aprimorado conforme novas descobertas.
+                </label>
+                <label>
+                    <input type="radio" name="q4" value="c">
+                    Depende apenas de opiniões pessoais.
+                </label>
+                <label>
+                    <input type="radio" name="q4" value="d">
+                    Não pode ser repetido.
+                </label>
+            </div>
+        </div>
+
+        <!-- Pergunta 5 -->
+        <div class="question">
+            <p class="question-title">5. Qual é um exemplo de conhecimento científico?</p>
+            <div class="options">
+                <label>
+                    <input type="radio" name="q5" value="a">
+                    Acreditar que abrir um guarda-chuva dentro de casa dá azar.
+                </label>
+                <label>
+                    <input type="radio" name="q5" value="b">
+                    Observar que a água ferve a 100 °C ao nível do mar.
+                </label>
+                <label>
+                    <input type="radio" name="q5" value="c">
+                    Usar um amuleto para atrair sorte.
+                </label>
+                <label>
+                    <input type="radio" name="q5" value="d">
+                    Dizer que “a lua influencia no humor” sem testes.
+                </label>
+            </div>
+        </div>
+
+        <button type="submit" class="submit-button">Ver Resultados</button>
+    </form>
+
+    <div id="results">
+        <p class="score-text">Sua pontuação: <span id="score">0</span>/5</p>
+        <div class="feedback" id="feedback">
+            
+        </div>
+    </div>
+
+    <p class="attribution">
+        Criado com HTML, CSS e JavaScript
+    </p>
+</div>
+
+<script>
+    document.getElementById('scienceQuiz').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const answers = {
+            q1: 'b',
+            q2: 'b',
+            q3: 'd',
+            q4: 'b',
+            q5: 'b'
+        };
+
+        let score = 0;
+        const feedbackDiv = document.getElementById('feedback');
+        feedbackDiv.innerHTML = '<h2>Gabarito e Suas Respostas:</h2>'; // Limpa o feedback anterior
+
+        // Itera sobre cada pergunta
+        for (let i = 1; i <= 5; i++) {
+            const questionName = `q${i}`;
+            const selectedOption = document.querySelector(`input[name="${questionName}"]:checked`);
+            const questionTitleElement = document.querySelector(`.question:nth-of-type(${i}) .question-title`);
+            const questionText = questionTitleElement ? questionTitleElement.textContent.trim() : `Pergunta ${i}`;
+
+
+            let userAnswer = 'Não respondida';
+            let isCorrect = false;
+
+            if (selectedOption) {
+                userAnswer = selectedOption.value;
+                if (userAnswer === answers[questionName]) {
+                    score++;
+                    isCorrect = true;
+                }
+            }
+
+            // Exibe o feedback individual para cada pergunta
+            const correctAnswerText = document.querySelector(`input[name="${questionName}"][value="${answers[questionName]}"]`).parentElement.textContent.trim();
+            feedbackDiv.innerHTML += `
+                <p>
+                    <span class="${isCorrect ? 'correct-answer' : 'incorrect-answer'}">${questionText}</span><br>
+                    Sua resposta: "${selectedOption ? selectedOption.parentElement.textContent.trim() : userAnswer}"<br>
+                    Resposta correta: "${correctAnswerText}"
+                </p>
+            `;
+        }
+
+        document.getElementById('score').textContent = score;
+        document.getElementById('results').classList.add('show'); // Mostra a área de resultados
+    });
+</script>
+
+</body>
+</html>
